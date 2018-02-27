@@ -3,6 +3,9 @@
   "description": "hello node app",
   "version": "0.0.2",
   "private": true,
+  "scripts": {
+    "test": "node_modules/.bin/mocha -w"
+  },
   "dependencies": {
     "express": "3.12.0"
   },

@@ -1,14 +1,14 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: valaxy-service
+  name: mohasin-service
   labels:
-    app: valaxy-devops-project
+    app: mohasin-devops-project-service
 spec:
   selector:
-    app: valaxy-devops-project
+    app: mohasin-devops-project-pod
   type: LoadBalancer
   ports:
     - port: 8080
-      targetPort: 8080
+      targetPort: 3000
       nodePort: 31200

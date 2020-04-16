@@ -32,5 +32,10 @@ pipeline {
         sh "docker rmi $registry:$BUILD_NUMBER"
       }
     }
+    stage('Run Ansible playbook to create deployment') {
+      steps{
+        sh "pwd"
+      }
+    }
   }
 }

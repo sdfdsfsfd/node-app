@@ -37,5 +37,10 @@ pipeline {
         sh "pwd"
       }
     }
+    stage('Run Ansible playbook to create service') {
+      steps{
+        sh "ls -al"
+      }
+    }
   }
 }

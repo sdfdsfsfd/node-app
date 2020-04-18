@@ -5,12 +5,12 @@
   user: root
  
   tasks: 
-  - name: copy deployment file to the k8s server
+  - name: copy deployment file to the k8s server at /home/ec2-user location
     copy:
     src: ./deployment.yaml
-    dest: /ec2-user/home
+    dest: /home/ec2-user
   - name: create a deployment
-    command: kubectl apply -f /ec2-user/home/deployment.yaml
+    command: kubectl apply -f /home/ec2-user/deployment.yaml
  
  # - name: update deployment with new pods if image updated in docker hub
  #   command: kubectl rollout restart deployment.v1.apps/valaxy-deployment

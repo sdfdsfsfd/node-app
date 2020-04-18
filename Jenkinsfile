@@ -34,12 +34,12 @@ pipeline {
     }
     stage('Run Ansible playbook to create deployment') {
       steps{
-        sh "pwd"
+        sh "ansible-playbook deployment.yaml"
       }
     }
     stage('Run Ansible playbook to create service') {
       steps{
-        sh "ls -al"
+        sh "ansible-playbook service.yaml"
       }
     }
   }

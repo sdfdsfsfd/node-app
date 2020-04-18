@@ -6,9 +6,10 @@
  
   tasks: 
   - name: copy deployment file to the k8s server at /home/ec2-user location
-    copy:
-      src: ./deployment.yaml
-      dest: /home/ec2-user
+    copy: src=./{{ item }} dest=/home/ec2-user
+    with_items:
+    - deployment.yaml
+    - service.yaml
   - name: create a deployment
     command: kubectl apply -f /home/ec2-user/deployment.yaml
  

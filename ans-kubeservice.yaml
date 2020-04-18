@@ -5,5 +5,8 @@
   user: root
 
   tasks:
+  copy:
+    src: ./service.yaml
+    dest: /home/ec2-user
   - name: create a service
     command: kubectl apply -f /home/ec2-user/service.yml

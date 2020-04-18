@@ -5,8 +5,9 @@
   user: root
 
   tasks:
-  copy:
-    src: ./service.yaml
-    dest: /home/ec2-user
+  - name: copy service.yaml file to /home/ec2-user on k8s server
+    copy:
+      src: ./service.yaml
+      dest: /home/ec2-user
   - name: create a service
     command: kubectl apply -f /home/ec2-user/service.yml

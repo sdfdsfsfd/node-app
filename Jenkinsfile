@@ -3,6 +3,8 @@ pipeline {
     registry = "mpmohasin9/hello-world"
     registryCredential = 'dockerhub'
     dockerImage = ''
+    //ECRURL = 'http://999999999999.dkr.ecr.eu-central-1.amazonaws.com'
+    //ECRCRED = 'ecr:eu-central-1:tap_ecr'
   }
   agent any
   stages {
@@ -21,6 +23,8 @@ pipeline {
     stage('Deploy Image') {
       steps{
         script {
+          // login to ECR - for now it seems that that the ECR Jenkins plugin is not performing the login as expected. I hope it will in the future.
+                    //sh("eval \$(aws ecr get-login --no-include-email | sed 's|https://||')")
           docker.withRegistry( '', registryCredential ) {
             dockerImage.push()
           }

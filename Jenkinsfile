@@ -36,6 +36,11 @@ pipeline {
         sh "docker rmi $registry:$BUILD_NUMBER"
       }
     }
+    stage('Login into AWS EKS') {
+      steps{
+        sh "aws eks --region us-west-2 update-kubeconfig --name cluster_name"
+      }
+    }
     stage('Run Ansible playbook to create deployment') {
       steps{
         sh "ansible-playbook deployment.yaml"

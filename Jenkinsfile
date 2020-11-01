@@ -13,6 +13,21 @@ pipeline {
         git 'https://github.com/sdfdsfsfd/node-app.git'
       }
     }
+    stage("build & SonarQube analysis") {
+      steps {
+        withSonarQubeEnv('My SonarQube Server') {
+                sh 'mvn clean package sonar:sonar'
+                sh 'npm run sonar'
+              }
+            }
+          }
+    stage("Quality Gate") {
+       steps {
+              timeout(time: 1, unit: 'HOURS') {
+                waitForQualityGate abortPipeline: true
+              }
+            }
+    }
     stage('Building image') {
       steps{
         script {
@@ -39,6 +54,11 @@ pipeline {
     stage('Login into AWS EKS') {
       steps{
         sh "aws eks --region us-west-2 update-kubeconfig --name cluster_name"
+      }
+    }
+     stage('Rollout Image') {
+      steps{
+        sh "kubectl set image deployment depname containername=imagewithnewtag"
       }
     }
     stage('Run Ansible playbook to create deployment') {
